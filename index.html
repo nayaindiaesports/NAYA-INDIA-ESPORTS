@@ -1045,17 +1045,21 @@ document.getElementById("loginForm")
     showAuthMessage("Login successful!", "success");
 
   } catch (error) {
+} catch (error) {
 
-    console.error(error);
-    showAuthMessage(getFriendlyError(error.code));
+  console.error("LOGIN ERROR:", error);
 
-  } finally {
+  showAuthMessage(
+    error.code + " : " + error.message,
+    "error"
+  );
 
-    button.disabled = false;
-    button.textContent = "LOGIN NOW";
+} finally {
 
-  }
+  button.disabled = false;
+  button.textContent = "LOGIN NOW";
 
+   }
 });
 
 /* FORGOT PASSWORD */
