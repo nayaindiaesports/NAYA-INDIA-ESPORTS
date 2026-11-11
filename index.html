@@ -1023,6 +1023,7 @@ document.getElementById("signupForm")
 
 });
 
+
 /* LOGIN */
 
 document.getElementById("loginForm")
@@ -1045,23 +1046,24 @@ document.getElementById("loginForm")
     showAuthMessage("Login successful!", "success");
 
   } catch (error) {
-} catch (error) {
 
-  console.error("LOGIN ERROR:", error);
+    console.error("LOGIN ERROR:", error);
 
-  showAuthMessage(
-    error.code + " : " + error.message,
-    "error"
-  );
+    showAuthMessage(
+      error.code + " : " + error.message,
+      "error"
+    );
 
-} finally {
+  } finally {
 
-  button.disabled = false;
-  button.textContent = "LOGIN NOW";
+    button.disabled = false;
+    button.textContent = "LOGIN NOW";
 
-   }
+  }
+
 });
-
+   
+  
 /* FORGOT PASSWORD */
 
 window.forgotPassword = async function() {
