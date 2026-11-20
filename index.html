@@ -1,0 +1,28 @@
+<!doctype html>
+<html lang="en"><head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="theme-color" content="#000000"><title>NAYA INDIA ESPORTS</title>
+<link href="https://fonts.googleapis.com/css2?family=Rajdhani:wght@600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/style.css"></head>
+<body><div class="wrap">
+<h1 class="brand">NAYA <b>INDIA</b> ESPORTS</h1>
+<p class="sub">Free Fire tournaments. Register, play, win.</p>
+<div class="panel">
+<div class="tabs"><button class="tab on" id="tLogin" type="button">Login</button><button class="tab" id="tSignup" type="button">Sign up</button></div>
+<form id="loginForm">
+<label for="lEmail">Email</label><input id="lEmail" type="email" autocomplete="email" required>
+<label for="lPass">Password</label><input id="lPass" type="password" autocomplete="current-password" required>
+<button class="btn" type="submit">Login</button>
+<button class="link" type="button" id="forgot">Forgot password?</button>
+</form>
+<form id="signupForm" class="hide">
+<label for="sName">Full name</label><input id="sName" autocomplete="name" required>
+<label for="sIgn">Free Fire in-game name</label><input id="sIgn" required>
+<label for="sUid">Free Fire UID</label><input id="sUid" inputmode="numeric" pattern="[0-9]{8,12}" title="8 se 12 digit ka UID" required>
+<label for="sEmail">Email</label><input id="sEmail" type="email" autocomplete="email" required>
+<label for="sPass">Password (min 6 characters)</label><input id="sPass" type="password" minlength="6" autocomplete="new-password" required>
+<button class="btn" type="submit">Create account</button>
+</form>
+<div class="msg" id="msg" role="status"></div>
+</div></div>
+<script type="module" src="js/auth.js"></script></body></html>
