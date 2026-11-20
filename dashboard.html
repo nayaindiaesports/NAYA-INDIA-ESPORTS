@@ -1,0 +1,26 @@
+<!doctype html>
+<html lang="en"><head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="theme-color" content="#000000"><title>Dashboard | NAYA INDIA ESPORTS</title>
+<link href="https://fonts.googleapis.com/css2?family=Rajdhani:wght@600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/style.css"></head>
+<body><div class="wrap">
+<div class="top"><h1 class="brand" style="font-size:26px">NAYA <b>INDIA</b></h1><button class="out" id="logout" type="button">Logout</button></div>
+<div class="panel">
+<h2 id="hello">Loading...</h2>
+<div class="row"><span>Email</span><span id="vEmail">-</span></div>
+<div class="row"><span>In-game name</span><span id="vIgn">-</span></div>
+<div class="row"><span>Free Fire UID</span><span id="vUid">-</span></div>
+</div>
+<div class="panel" style="margin-top:16px">
+<h2>Edit game details</h2>
+<form id="editForm">
+<label for="eIgn">Free Fire in-game name</label><input id="eIgn" required>
+<label for="eUid">Free Fire UID</label><input id="eUid" inputmode="numeric" pattern="[0-9]{8,12}" title="8 se 12 digit ka UID" required>
+<button class="btn" type="submit">Save changes</button>
+</form>
+<div class="msg" id="msg" role="status"></div>
+</div>
+<p class="note">Tournaments aur registration agle phase mein aayenge.</p>
+</div>
+<script type="module" src="js/dashboard.js"></script></body></html>
