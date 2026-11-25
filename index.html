@@ -1,0 +1,348 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="theme-color" content="#05070d">
+<link rel="manifest" href="manifest.json">
+<link rel="apple-touch-icon" href="icon-192.png">
+<script>window.deferredPrompt=null;window.addEventListener('beforeinstallprompt',function(e){e.preventDefault();window.deferredPrompt=e;window.dispatchEvent(new Event('pwa-ready'))});window.addEventListener('appinstalled',function(){window.deferredPrompt=null;window.dispatchEvent(new Event('pwa-ready'))});</script>
+<title>NAYA INDIA ESPORTS</title>
+<link href="https://fonts.googleapis.com/css2?family=Rajdhani:wght@500;600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#05070d;--panel:#0b1220;--line:#16233d;--neon:#00d4ff;--blue:#2f6bff;--text:#e6f1ff;--mut:#7f8fae;--ok:#22e58f;--bad:#ff4d6d;--warn:#ffb020}
+*{box-sizing:border-box;margin:0}
+body{background:var(--bg);color:var(--text);font:15px/1.5 Inter,system-ui,sans-serif;min-height:100vh}
+a{color:var(--neon);text-decoration:none}
+h1,h2,h3,.logo{font-family:Rajdhani,Inter,sans-serif;letter-spacing:.5px}
+h1{font-size:30px;margin-bottom:14px}h2{font-size:22px;margin:22px 0 10px}h3{font-size:18px}
+.top{position:sticky;top:0;z-index:20;background:rgba(5,7,13,.95);border-bottom:1px solid var(--line);display:flex;align-items:center;justify-content:space-between;padding:10px 16px;flex-wrap:wrap}
+.logo{font-size:22px;font-weight:700;color:var(--text)}.logo b{color:var(--neon);text-shadow:0 0 12px var(--neon)}
+#burger{background:none;border:1px solid var(--line);color:var(--text);font-size:20px;border-radius:8px;padding:2px 10px;display:none}
+#nav{display:flex;gap:4px;align-items:center;flex-wrap:wrap}
+#nav a{color:var(--text);padding:6px 10px;border-radius:8px;font-weight:500}
+#nav a:hover,#nav a.on{background:#0f1c33;color:var(--neon)}
+main{max-width:1100px;margin:0 auto;padding:18px 14px 40px}
+.card{background:var(--panel);border:1px solid var(--line);border-radius:12px;padding:16px;margin-bottom:14px}
+.grid{display:grid;gap:14px;grid-template-columns:repeat(auto-fill,minmax(250px,1fr))}
+.stats{display:grid;gap:10px;grid-template-columns:repeat(auto-fit,minmax(120px,1fr));margin:12px 0}
+.stat{background:#08101d;border:1px solid var(--line);border-radius:10px;padding:12px;text-align:center}
+.stat b{display:block;font:700 24px Rajdhani;color:var(--neon)}
+.muted{color:var(--mut);font-size:13px}
+.btn,button.btn{display:inline-block;background:linear-gradient(90deg,var(--blue),var(--neon));color:#001018;border:0;border-radius:9px;padding:9px 16px;font:600 14px Inter;cursor:pointer;margin:4px 4px 0 0}
+.btn.ghost{background:none;border:1px solid var(--neon);color:var(--neon)}
+.btn.red{background:var(--bad);color:#fff}
+.btn:disabled{opacity:.5;cursor:not-allowed}
+input,select,textarea{width:100%;background:#08101d;border:1px solid var(--line);color:var(--text);border-radius:9px;padding:10px;font:inherit;margin:4px 0 10px}
+input:focus,select:focus,textarea:focus{outline:2px solid var(--neon);border-color:transparent}
+label{font-size:13px;color:var(--mut)}
+.hero{border:1px solid var(--line);border-radius:16px;padding:40px 20px;text-align:center;background:radial-gradient(circle at 50% 0,#0b2a55 0,#05070d 70%);margin-bottom:10px}
+.hero h1{font-size:clamp(32px,7vw,56px);text-shadow:0 0 24px rgba(0,212,255,.5)}
+.badge{display:inline-block;font-size:12px;padding:2px 10px;border-radius:20px;border:1px solid var(--mut);text-transform:capitalize}
+.badge.live,.badge.approved,.badge.paid{border-color:var(--ok);color:var(--ok)}
+.badge.upcoming,.badge.pending{border-color:var(--warn);color:var(--warn)}
+.badge.rejected{border-color:var(--bad);color:var(--bad)}
+.row{display:flex;justify-content:space-between;gap:8px;margin:8px 0;flex-wrap:wrap}
+.bar{height:6px;background:#0d1a30;border-radius:6px;overflow:hidden}.bar i{display:block;height:100%;background:var(--neon)}
+.tabs{display:flex;gap:6px;overflow-x:auto;margin-bottom:14px;padding-bottom:4px}
+.tabs a,.tabs button{white-space:nowrap;background:var(--panel);border:1px solid var(--line);color:var(--text);padding:7px 14px;border-radius:20px;cursor:pointer;font:500 14px Inter}
+.tabs .on{border-color:var(--neon);color:var(--neon)}
+.tw{overflow-x:auto}table{width:100%;border-collapse:collapse;min-width:420px}
+th,td{padding:9px 8px;border-bottom:1px solid var(--line);text-align:left;font-size:14px}th{color:var(--mut);font-weight:500}
+#toast{position:fixed;left:50%;bottom:24px;transform:translateX(-50%);background:#0f2a4d;border:1px solid var(--neon);padding:10px 18px;border-radius:10px;opacity:0;pointer-events:none;transition:.25s;z-index:50;max-width:90%}
+#toast.show{opacity:1}#toast.err{border-color:var(--bad);background:#3a0f1a}
+footer{border-top:1px solid var(--line);padding:20px 14px;text-align:center;color:var(--mut);font-size:13px}
+footer a{margin:0 8px;color:var(--mut)}
+.warn{background:#3a2a05;border-bottom:1px solid var(--warn);color:var(--warn);padding:8px 14px;text-align:center}
+details{background:var(--panel);border:1px solid var(--line);border-radius:10px;padding:12px;margin-bottom:8px}summary{cursor:pointer;font-weight:600}
+.room{border:1px dashed var(--ok);border-radius:10px;padding:12px;margin:10px 0;color:var(--ok)}
+.loader{text-align:center;color:var(--mut);padding:40px}
+@media(max-width:760px){#burger{display:block}#nav{display:none;width:100%;flex-direction:column;align-items:stretch;padding-top:8px}#nav.open{display:flex}}
+body{padding-bottom:90px}main{max-width:720px}
+#burger,#nav{display:none!important}
+.top{justify-content:space-between;padding:12px 16px}
+.hr{display:flex;gap:8px;align-items:center}
+.pill{background:#0f1c33;border:1px solid var(--line);color:var(--text);border-radius:20px;padding:6px 12px;font-weight:600}
+.ic{width:38px;height:38px;border-radius:50%;border:1px solid var(--line);background:#0f1c33;display:flex;align-items:center;justify-content:center}
+#bnav{position:fixed;left:50%;transform:translateX(-50%);bottom:10px;width:calc(100% - 20px);max-width:520px;background:rgba(11,18,32,.97);border:1px solid var(--line);border-radius:30px;display:flex;justify-content:space-around;padding:6px;z-index:30}
+#bnav a{flex:1;text-align:center;color:var(--mut);padding:6px 4px;border-radius:24px;font-size:12px;font-weight:500}
+#bnav a span{display:block;font-size:20px;line-height:1.2}
+#bnav a.on{background:#16233d;color:var(--neon)}
+.car{display:flex;gap:14px;overflow-x:auto;scroll-snap-type:x mandatory;padding-bottom:8px;margin-bottom:10px}
+.car .card{flex:0 0 85%;scroll-snap-align:center;margin-bottom:0}
+.car::-webkit-scrollbar{display:none}
+.avatar{width:96px;height:96px;border-radius:50%;margin:0 auto 10px;display:flex;align-items:center;justify-content:center;font:700 40px Rajdhani;background:linear-gradient(135deg,var(--blue),var(--neon));color:#001018;border:3px solid var(--neon)}
+.qgrid{display:grid;grid-template-columns:repeat(2,1fr);gap:10px}
+.qgrid a{background:var(--panel);border:1px solid var(--line);border-radius:12px;padding:16px;text-align:center;color:var(--text);font-weight:600}
+.qgrid a span{display:block;font-size:26px}
+.menu a{display:flex;justify-content:space-between;padding:14px;border-bottom:1px solid var(--line);color:var(--text)}
+footer{padding-bottom:100px}
+body.guest #bnav,body.guest footer,body.guest #hr{display:none}
+#inst{display:none;position:fixed;left:10px;right:10px;bottom:90px;max-width:500px;margin:0 auto;background:#0f2a4d;border:1px solid var(--neon);border-radius:14px;padding:10px 12px;align-items:center;gap:8px;z-index:40}body.guest #inst{bottom:16px}#inst span{flex:1;font-size:14px}
+
+/* ===== THEME V2 : gaming look ===== */
+:root{--bg:#04060c;--panel:#0b1324;--line:#1a2b4d;--neon:#18e0ff;--blue:#4d7cff;--gold:#ffc83d;--pink:#ff3d81;--text:#eaf3ff;--mut:#8497ba}
+body{background:radial-gradient(1100px 560px at 85% -8%,rgba(77,124,255,.24),transparent 60%),radial-gradient(800px 480px at -10% 8%,rgba(24,224,255,.14),transparent 55%),var(--bg);background-attachment:fixed}
+body::before{content:"";position:fixed;inset:0;pointer-events:none;z-index:-1;background-image:linear-gradient(rgba(255,255,255,.028) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,.028) 1px,transparent 1px);background-size:38px 38px;-webkit-mask-image:radial-gradient(circle at 50% 0,#000 0,transparent 75%);mask-image:radial-gradient(circle at 50% 0,#000 0,transparent 75%)}
+h1{font-size:32px;text-transform:uppercase;letter-spacing:1.5px;background:linear-gradient(90deg,#fff,var(--neon));-webkit-background-clip:text;background-clip:text;color:transparent}
+#app>h2{font-size:22px;text-transform:uppercase;letter-spacing:1px;display:flex;align-items:center;gap:10px;margin:26px 0 12px}
+#app>h2::before{content:"";width:5px;height:22px;border-radius:3px;background:linear-gradient(var(--neon),var(--blue));box-shadow:0 0 12px var(--neon)}
+.top{background:rgba(4,6,12,.78);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px)}
+.logo{font-weight:700;letter-spacing:1.5px}.logo b{text-shadow:0 0 16px var(--neon)}
+.card{background:linear-gradient(160deg,rgba(20,34,64,.88),rgba(9,16,32,.92));border-radius:16px;box-shadow:0 8px 30px rgba(0,0,0,.35),inset 0 1px 0 rgba(255,255,255,.05)}
+.grid>.card,.car>.card,.qgrid a{transition:transform .2s,border-color .2s,box-shadow .2s}
+.grid>.card:hover,.qgrid a:hover{transform:translateY(-4px);border-color:var(--neon);box-shadow:0 14px 38px rgba(24,224,255,.16)}
+.btn,button.btn{background:linear-gradient(90deg,var(--blue),var(--neon));border-radius:10px;font-weight:700;letter-spacing:.5px;text-transform:uppercase;font-size:13px;box-shadow:0 4px 18px rgba(24,224,255,.25);transition:transform .15s,box-shadow .15s}
+.btn:hover{transform:translateY(-2px);box-shadow:0 8px 26px rgba(24,224,255,.4)}.btn:active{transform:scale(.97)}
+.btn.ghost{background:transparent;box-shadow:none}.btn.red{background:linear-gradient(90deg,#ff4d6d,#ff3d81)}
+input,select,textarea{border-radius:11px;background:#07101f}input:focus,select:focus,textarea:focus{outline:none;border-color:var(--neon);box-shadow:0 0 0 3px rgba(24,224,255,.18)}
+.stat{background:linear-gradient(160deg,#0e1b36,#08101f);border-radius:14px}.stat b{font-size:26px;text-shadow:0 0 14px rgba(24,224,255,.45)}
+.badge{font-weight:600;letter-spacing:.4px}
+.badge.live{border-color:#ff4d6d;color:#ff4d6d}
+.badge.live::before{content:"";display:inline-block;width:7px;height:7px;border-radius:50%;background:#ff4d6d;margin-right:6px;animation:pulse 1.2s infinite}
+.bar{height:8px;border-radius:8px}.bar i{background:linear-gradient(90deg,var(--blue),var(--neon));box-shadow:0 0 10px var(--neon);border-radius:8px}
+.tabs a.on,.tabs button.on{background:linear-gradient(90deg,var(--blue),var(--neon));color:#001018;border-color:transparent;font-weight:700}
+th{text-transform:uppercase;font-size:11px;letter-spacing:.8px}tr:hover td{background:rgba(24,224,255,.045)}
+.pill{border-color:rgba(255,200,61,.45);color:var(--gold);box-shadow:0 0 14px rgba(255,200,61,.18)}.pill+.pill{border-color:rgba(24,224,255,.45);color:var(--neon);box-shadow:0 0 14px rgba(24,224,255,.18)}
+#bnav{background:rgba(9,16,32,.9);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);box-shadow:0 10px 40px rgba(0,0,0,.55),0 0 0 1px rgba(24,224,255,.08)}
+#bnav a{transition:.2s}#bnav a.on{background:linear-gradient(135deg,rgba(77,124,255,.32),rgba(24,224,255,.2));box-shadow:inset 0 0 0 1px rgba(24,224,255,.35),0 0 18px rgba(24,224,255,.2)}#bnav a.on span{transform:scale(1.15)}
+.hero{position:relative;overflow:hidden;text-align:left;padding:38px 20px;border-radius:22px;background:radial-gradient(500px 260px at 92% 0,rgba(24,224,255,.28),transparent 60%),radial-gradient(420px 260px at 0 100%,rgba(255,61,129,.2),transparent 60%),linear-gradient(160deg,#0c1a38,#060b18)}
+.hero::after{content:"";position:absolute;right:-50px;top:-50px;width:210px;height:210px;border-radius:50%;border:2px solid rgba(24,224,255,.28);box-shadow:0 0 60px rgba(24,224,255,.28);animation:float 6s ease-in-out infinite;pointer-events:none}
+.hero h1{font-size:clamp(34px,8vw,56px);line-height:1.05;text-shadow:none}.hero em{font-style:normal;-webkit-text-fill-color:var(--gold);color:var(--gold);text-shadow:0 0 22px rgba(255,200,61,.5)}
+.tag{display:inline-block;font-size:12px;letter-spacing:2px;color:var(--neon);border:1px solid rgba(24,224,255,.4);border-radius:20px;padding:3px 12px;margin-bottom:12px}
+.chips{display:flex;gap:8px;flex-wrap:wrap;margin:14px 0 18px}.chips span{background:rgba(255,255,255,.06);border:1px solid var(--line);border-radius:20px;padding:4px 12px;font-size:13px}
+.tc{padding:0;overflow:hidden}.tb{position:relative;height:96px;display:flex;align-items:center;padding:0 16px}
+.tb::after{content:"";position:absolute;inset:0;background:linear-gradient(0deg,rgba(6,11,24,.55),transparent)}
+.tbi{font-size:44px;filter:drop-shadow(0 4px 10px rgba(0,0,0,.5));position:relative;z-index:1}
+.tb .chip{position:absolute;left:14px;bottom:8px;z-index:1;font:700 12px Rajdhani;letter-spacing:1.5px;text-transform:uppercase;background:rgba(0,0,0,.45);border-radius:6px;padding:2px 8px}
+.tb .badge{position:absolute;right:12px;top:10px;z-index:1;background:rgba(0,0,0,.55);border-color:currentColor}
+.tbody{padding:14px}.tbody h3{font-size:20px;margin-bottom:2px}
+.prize{font:700 24px Rajdhani;color:var(--gold);text-shadow:0 0 14px rgba(255,200,61,.35);margin:6px 0}
+.claim{border-color:rgba(255,200,61,.55);background:linear-gradient(120deg,rgba(255,200,61,.16),rgba(11,19,36,.92))}
+.card>div[style*="font-size:34px"]{width:64px;height:64px;border-radius:18px;display:flex;align-items:center;justify-content:center;background:linear-gradient(135deg,rgba(77,124,255,.35),rgba(24,224,255,.18));margin-bottom:8px;font-size:32px!important}
+.brand{text-align:center;margin:18px 0 20px}.brand .lg{font:700 42px/1 Rajdhani;letter-spacing:2px}.brand .lg b{color:var(--neon);text-shadow:0 0 22px var(--neon)}.brand p{margin-top:8px}
+.loader{font-size:0}.loader::before{content:"";display:block;width:40px;height:40px;margin:0 auto 10px;border:3px solid var(--line);border-top-color:var(--neon);border-radius:50%;animation:spin .8s linear infinite}.loader::after{content:"Loading…";font-size:13px}
+#app>*{animation:rise .45s both}.grid>.card{animation:rise .5s both}.grid>.card:nth-child(2){animation-delay:.06s}.grid>.card:nth-child(3){animation-delay:.12s}.grid>.card:nth-child(4){animation-delay:.18s}.grid>.card:nth-child(n+5){animation-delay:.22s}
+@keyframes rise{from{opacity:0;transform:translateY(12px)}to{opacity:1;transform:none}}
+@keyframes spin{to{transform:rotate(360deg)}}
+@keyframes pulse{50%{opacity:.25}}
+@keyframes float{50%{transform:translateY(14px)}}
+@media(prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
+</style>
+</head>
+<body class="guest">
+<header class="top"><a class="logo" href="#/home">NAYA <b>INDIA</b> ESPORTS</a><div class="hr" id="hr"></div></header>
+<div id="cfgwarn"></div>
+<main id="app"><div class="loader">Loading…</div></main>
+<footer>
+<a href="#/about">About Us</a><a href="#/contact">Contact Us</a><a href="#/faq">FAQ</a><a href="#/privacy">Privacy Policy</a><a href="#/terms">Terms &amp; Conditions</a><a href="#/fairplay">Rules &amp; Fair Play</a>
+<p style="margin-top:10px">© NAYA INDIA ESPORTS</p>
+</footer>
+<nav id="bnav"></nav>
+<div id="inst"><span>📲 Install NAYA INDIA ESPORTS app</span><button class="btn" id="instgo" style="margin:0">Install</button><button class="btn ghost" id="instx" style="margin:0">✕</button></div>
+<div id="toast"></div>
+
+<script type="text/plain" id="mainjs">
+/* ====== 1) PASTE YOUR FIREBASE WEB CONFIG HERE (Firebase Console > Project settings > Your apps > Web) ====== */
+const CFG={apiKey:"AIzaSyCUOHKfHy35G4M3pUxWHerEWxPQ-zYvyg8",authDomain:"naya-india-esportsa.firebaseapp.com",projectId:"naya-india-esportsa",storageBucket:"naya-india-esportsa.firebasestorage.app",messagingSenderId:"541751208129",appId:"1:541751208129:web:973af506812cfe23d14c40"};
+/* ========================================================================================================== */
+if(CFG.apiKey.startsWith('PASTE')){document.getElementById('cfgwarn').innerHTML='<div class="warn">Firebase config missing: index.html me CFG (apiKey, appId) paste karo.</div>'}
+firebase.initializeApp(CFG);
+const auth=firebase.auth(),db=firebase.firestore(),FV=firebase.firestore.FieldValue;
+auth.setPersistence(firebase.auth.Auth.Persistence.LOCAL).catch(()=>{});
+const $=s=>document.querySelector(s),app=$('#app');
+const esc=s=>String(s==null?'':s).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+const fmt=ms=>ms?new Date(ms).toLocaleString('en-IN',{dateStyle:'medium',timeStyle:'short'}):'TBA';
+const rs=n=>'₹'+Number(n||0).toLocaleString('en-IN');
+const fd=f=>Object.fromEntries(new FormData(f));
+const docs=s=>s.docs.map(d=>({id:d.id,...d.data()}));
+const DEF_GAMES=[{name:'BGMI',icon:'🔫',desc:'Battlegrounds Mobile India squads and solos.'},{name:'Free Fire MAX',icon:'🔥',desc:'Fast battle royale with daily custom rooms.'},{name:'Valorant',icon:'🎯',desc:'5v5 tactical shooter tournaments.'},{name:'Call of Duty Mobile',icon:'💥',desc:'CODM BR and MP events.'},{name:'Other Games',icon:'🎮',desc:'More games coming soon.'}];
+let after='',ready=false,user=null,me=null,stat=null,site={},T=[],GAMES=null,D={},lbGame='';
+let coins={dailyLogin:10,referralBonus:50,participationBonus:5,ncEnabled:false,maxGold:0,expiryDays:0};
+const utcDay=()=>{const d=new Date();return d.getUTCFullYear()+'-'+(d.getUTCMonth()+1)+'-'+d.getUTCDate()};
+const CN={NG:'Coins',NC:'Money'};
+const tms=x=>x&&x.toMillis?x.toMillis():(x||0);
+const ttype=t=>t.type||(t.entryFee>0?'paid':'free');
+const unit=t=>ttype(t)==='paid'?' Money':' Coins';
+const pz=t=>Number(t.prizePool||0).toLocaleString('en-IN')+unit(t);
+const entryTxt=t=>ttype(t)==='paid'?(t.entryFee||0)+' Money':((t.ngFee||0)>0?t.ngFee+' Coins':'FREE');
+const H={},ACT={},CH={};
+
+function toast(m,e){const t=$('#toast');t.textContent=m;t.className='show'+(e?' err':'');clearTimeout(toast.t);toast.t=setTimeout(()=>t.className='',3500)}
+function busy(f,on){f.querySelectorAll('button[type=submit]').forEach(b=>b.disabled=on)}
+function fe(e){const m={'auth/email-already-in-use':'Email already registered','auth/invalid-email':'Invalid email','auth/weak-password':'Password must be 6+ characters','auth/user-not-found':'Wrong email or password','auth/wrong-password':'Wrong email or password','auth/invalid-credential':'Wrong email or password','auth/network-request-failed':'No internet connection','auth/too-many-requests':'Too many attempts. Try later','permission-denied':'Permission denied. Login again or check Firestore rules','failed-precondition':'Firestore index needed - open browser console and click the link'};return m[e.code]||e.message||'Something went wrong'}
+function go(h){if(location.hash===h)route();else location.hash=h}
+function tbl(h,rows){if(!rows.length)return '<div class="card muted">No data yet.</div>';return `<div class="card tw"><table><tr>${h.map(x=>`<th>${x}</th>`).join('')}</tr>${rows.map(r=>`<tr>${r.map(c=>`<td>${c}</td>`).join('')}</tr>`).join('')}</table></div>`}
+async function loadSite(){if(site._ok)return;try{const [a,c]=await Promise.all([db.collection('settings').doc('site').get(),db.collection('settings').doc('coins').get()]);site=a.exists?a.data():{};if(c.exists)coins={...coins,...c.data()}}catch(e){site={}}site._ok=1}
+async function loadT(){T=docs(await db.collection('tournaments').orderBy('startTime','desc').limit(100).get())}
+async function getGames(){if(GAMES)return GAMES;try{const g=docs(await db.collection('games').get()).filter(x=>x.active!==false);GAMES=g.length?g:DEF_GAMES}catch(e){GAMES=DEF_GAMES}return GAMES}
+async function loadMe(){if(!user){me=null;stat=null;return}const [u,p]=await Promise.all([db.collection('users').doc(user.uid).get(),db.collection('players').doc(user.uid).get()]);me=u.exists?{id:u.id,...u.data()}:null;stat=p.exists?p.data():{points:0,wins:0,matches:0}}
+
+/* ---------- navigation ---------- */
+function updateNav(){document.body.classList.toggle('guest',!user);showInst();const p=location.hash.replace(/^#\/?/,'').split('/')[0]||'home';const M={home:'home',games:'tournaments',tournaments:'tournaments',tournament:'tournaments',wallet:'wallet'},AC=['profile','mytournaments','history','notifications','settings','login','register'];const k=M[p]||(AC.includes(p)?'profile':'home');const L=[['home','🏠','Home','home'],['tournaments','🏆','Tournaments','tournaments'],['wallet','💳','Wallet','wallet'],[user?'profile':'login','👤',user?'Profile':'Login','profile']];$('#bnav').innerHTML=L.map(([h,i,l,key])=>`<a class="${key===k?'on':''}" href="#/${h}"><span>${i}</span>${l}</a>`).join('');$('#hr').innerHTML=user?`<a class="pill" href="#/wallet/gold">🟡 ${me?(me.gold||0):0}</a>${coins.ncEnabled?`<a class="pill" href="#/wallet/cash">🔵 ${me?(me.wallet||0):0}</a>`:''}<a class="ic" href="#/notifications">🔔</a>`:'<a class="btn" href="#/register" style="margin:0">Register</a>'}
+function acct(a){const L=[['profile','My Profile'],['mytournaments','My Tournaments'],['history','Match History'],['notifications','Notifications'],['wallet','Wallet'],['settings','Settings']];return `<div class="tabs">${L.map(([k,l])=>`<a class="${a===k?'on':''}" href="#/${k}">${l}</a>`).join('')}</div>`}
+function needLogin(){app.innerHTML='<div class="card"><h2>Login required</h2><p class="muted">Please login to continue.</p><a class="btn" href="#/login">Login</a><a class="btn ghost" href="#/register">Create account</a></div>'}
+const GCOL={'BGMI':['#ff9a00','#ff4a00'],'Free Fire MAX':['#ff5a1f','#c4001d'],'Valorant':['#ff4655','#7a0f2e'],'Call of Duty Mobile':['#35d07f','#0a5c3a']},GICO={'BGMI':'🔫','Free Fire MAX':'🔥','Valorant':'🎯','Call of Duty Mobile':'💥'};
+function tcard(t){const c=GCOL[t.game]||['#4d7cff','#18e0ff'],pc=t.slots?Math.min(100,Math.round((t.filled||0)/t.slots*100)):0;return `<div class="card tc"><div class="tb" style="background:linear-gradient(135deg,${c[0]},${c[1]})"><span class="tbi">${GICO[t.game]||'🎮'}</span><span class="chip">${esc(t.mode||'Match')}</span><span class="badge ${esc(t.status)}">${esc(t.status)}</span></div><div class="tbody"><h3>${esc(t.title)}</h3><p class="muted">${esc(t.game)}</p><div class="prize">🏆 ${pz(t)}</div><div class="row"><span>Entry <b>${entryTxt(t)}</b></span><span class="muted">${fmt(t.startTime)}</span></div><div class="bar"><i style="width:${pc}%"></i></div><p class="muted" style="margin:6px 0 4px">${t.filled||0}/${t.slots||0} joined</p><a class="btn" href="#/tournament/${t.id}">View &amp; Join</a></div></div>`}
+/* ---------- router ---------- */
+const R={};
+async function route(){if(!ready)return;updateNav();if(user&&!me){app.innerHTML='<div class="loader">Setting up your account…</div>';clearTimeout(route.w);route.w=setTimeout(async()=>{try{await loadMe()}catch(e){}if(me||!user)route();else app.innerHTML='<div class="card"><h2>Profile not found</h2><p class="muted">Your login exists but profile data is missing. Logout and register again with a new email, or contact support.</p><button class="btn red" data-a="logout">Logout</button></div>'},1800);return}let [p,a,b]=location.hash.replace(/^#\/?/,'').split('/');if(!user&&p!=='login'&&p!=='register'){if(p)after=location.hash;history.replaceState(null,'','#/login');p='login';a=b=undefined;updateNav()}const f=R[p||'home']||R.notfound;app.innerHTML='<div class="loader">Loading…</div>';try{await f(a?decodeURIComponent(a):undefined,b?decodeURIComponent(b):undefined)}catch(e){console.error(e);app.innerHTML=`<div class="card"><h2>Something went wrong</h2><p class="muted">${esc(fe(e))}</p><button class="btn" onclick="route()">Try again</button></div>`}window.scrollTo(0,0)}
+window.addEventListener('hashchange',route);
+app.addEventListener('submit',e=>{const h=H[e.target.dataset.f];if(h){e.preventDefault();h(e.target)}});
+app.addEventListener('click',e=>{const b=e.target.closest('[data-a]');if(b&&ACT[b.dataset.a]){e.preventDefault();ACT[b.dataset.a](b.dataset,b)}});
+app.addEventListener('input',e=>{const c=e.target.dataset.i;if(c&&CH[c])CH[c](e.target.value)});
+app.addEventListener('change',e=>{const c=e.target.dataset.c;if(c&&CH[c])CH[c](e.target.value)});
+auth.onAuthStateChanged(async u=>{user=u;site._ok=0;try{await Promise.all([loadMe(),loadSite()])}catch(e){console.error(e)}if(me&&me.banned){await auth.signOut();toast('Your account is banned. Contact support.',1);return}ready=true;route()});
+
+/* ---------- home ---------- */
+function claimCard(){if(!(coins.dailyLogin>0))return '';if(me.lastDaily===utcDay())return '<div class="card muted">🎁 Daily reward claimed. Come back tomorrow.</div>';return `<div class="card claim"><b>🎁 Daily reward</b> +${coins.dailyLogin} Coins <button class="btn" data-a="daily">Claim now</button></div>`}
+function homeTop(){const q='<h2>Explore</h2><div class="qgrid"><a href="#/games"><span>🎮</span>Games</a><a href="#/leaderboard"><span>📊</span>Leaderboard</a><a href="#/teams"><span>👥</span>Teams</a><a href="#/news"><span>📰</span>News</a></div>';if(!user||!me)return `<section class="hero"><h1>Play. Compete. Win.</h1><p class="muted" style="margin:8px 0 16px">India's esports tournaments for BGMI, Free Fire MAX, Valorant and COD Mobile.</p><a class="btn" href="#/tournaments">Browse tournaments</a><a class="btn ghost" href="#/register">Create free account</a></section>`+q;return `<section class="hero"><span class="tag">WELCOME BACK</span><h1>Hi, ${esc((me.name||'Player').split(' ')[0])} <em>👋</em></h1><p class="muted">Ready to win today? Pick a tournament and play.</p><div class="chips"><span>🔥 Daily rewards</span><span>🏆 Live tournaments</span><span>👥 Team battles</span></div><a class="btn" href="#/tournaments">Find tournaments</a><a class="btn ghost" href="#/wallet/gold">My wallet</a></section><div class="stats"><div class="stat"><b>🟡 ${me.gold||0}</b>Coins</div>${coins.ncEnabled?`<div class="stat"><b>🔵 ${me.wallet||0}</b>Money</div>`:''}<div class="stat"><b>${stat.points||0}</b>Points</div><div class="stat"><b>${stat.matches||0}</b>Matches played</div><div class="stat"><b>${stat.wins||0}</b>Matches won</div></div>`+claimCard()+q}
+
+R.home=async()=>{await Promise.all([loadT(),loadSite()]);const [pl,ms]=await Promise.all([db.collection('players').orderBy('points','desc').limit(5).get(),db.collection('matches').orderBy('time','desc').limit(40).get()]);const M=docs(ms),P=docs(pl);const feat=T.filter(t=>t.status!=='completed').slice(0,3);const live=M.filter(m=>m.status==='live'),up=M.filter(m=>m.status==='upcoming').reverse().slice(0,4);
+const mrow=m=>`<div class="card"><b>${esc(m.title)}</b><p class="muted">${esc(m.tName||'')} • ${fmt(m.time)}${m.map?' • '+esc(m.map):''}</p>${m.tid?`<a href="#/tournament/${m.tid}">Open tournament</a>`:''}</div>`;
+app.innerHTML=`${homeTop()}
+<h2>🔥 Featured tournaments</h2><div class="grid">${feat.map(tcard).join('')||'<div class="card muted">No tournaments yet. Check back soon.</div>'}</div>
+<h2>🔴 Live matches</h2><div class="grid">${live.map(mrow).join('')||'<div class="card muted">No live matches right now.</div>'}</div>
+<h2>⏰ Upcoming matches</h2><div class="grid">${up.map(mrow).join('')||'<div class="card muted">No upcoming matches scheduled.</div>'}</div>
+<h2>👑 Top players</h2>${tbl(['#','Player','Points','Wins'],P.map((p,i)=>[i+1,esc(p.name)+' <span class="muted">@'+esc(p.username)+'</span>',p.points||0,p.wins||0]))}
+<h2>Leaderboard preview</h2><a class="btn ghost" href="#/leaderboard">View full leaderboard</a>
+<h2>💬 Join community</h2><div class="card"><p>Get room updates, results and announcements first.</p>${site.community?`<a class="btn" target="_blank" rel="noopener" href="${esc(site.community)}">Join our community</a>`:'<a class="btn" href="#/contact">Contact us</a>'}</div>`};
+
+/* ---------- games ---------- */
+R.games=async a=>{await loadT();const G=await getGames();if(a){const l=T.filter(t=>t.game===a);app.innerHTML=`<h1>${esc(a)}</h1><a href="#/games">← All games</a><h2>Tournaments</h2><div class="grid">${l.map(tcard).join('')||'<div class="card muted">No tournaments for this game yet.</div>'}</div>`;return}
+app.innerHTML=`<h1>Games</h1><div class="grid">${G.map(g=>`<div class="card"><div style="font-size:34px">${esc(g.icon||'🎮')}</div><h3>${esc(g.name)}</h3><p class="muted">${esc(g.desc||'')}</p><p class="muted">${T.filter(t=>t.game===g.name).length} tournaments</p><a class="btn" href="#/games/${encodeURIComponent(g.name)}">View tournaments</a></div>`).join('')}</div>`};
+
+/* ---------- tournaments ---------- */
+R.tournaments=async(a,m)=>{await loadT();a=a||'all';const modes=[['Solo','Play alone and fight for the top spot.'],['Duo','Team up with one partner.'],['Squad','Bring your full squad to win.']];const same=(t,x)=>(t.mode||'').toLowerCase()===x.toLowerCase();const tabs=[['all','All'],['live','Live'],['upcoming','Upcoming'],['completed','Completed']];let l=a==='all'?T:T.filter(t=>t.status===a);if(m)l=l.filter(t=>same(t,m));
+app.innerHTML=`<h1>Tournaments</h1><div class="car">${modes.map(([x,d])=>`<div class="card"><span class="badge">${x}</span><h3 style="margin:8px 0">${x.toUpperCase()}</h3><p class="muted">${d}</p><div class="row"><span>Tournaments</span><b>${T.filter(t=>same(t,x)).length}</b></div><div class="row"><span>Registration open</span><b>${T.filter(t=>same(t,x)&&t.status==='upcoming'&&(t.filled||0)<t.slots).length}</b></div><a class="btn" href="#/tournaments/${a}/${x}">View ${x}</a></div>`).join('')}</div><div class="tabs">${tabs.map(([k,n])=>`<a class="${a===k?'on':''}" href="#/tournaments/${k}${m?'/'+m:''}">${n}</a>`).join('')}${m?`<a href="#/tournaments/${a}">✕ ${m}</a>`:''}</div><div class="grid">${l.map(tcard).join('')||'<div class="card muted">No tournaments found.</div>'}</div>`};
+R.tournament=async id=>{const d=await db.collection('tournaments').doc(id).get();if(!d.exists){app.innerHTML='<div class="card">Tournament not found.</div>';return}await loadSite();const t={id,...d.data()};D={t,regs:[],ms:[],room:null,mine:null,tab:'overview'};
+const jobs=[db.collection('matches').where('tid','==',id).get().then(s=>{D.ms=docs(s).sort((a,b)=>a.time-b.time)})];
+if(user){jobs.push(db.collection('registrations').where('tid','==',id).where('status','==','approved').get().then(s=>{D.regs=docs(s)}));jobs.push(db.collection('registrations').where('tid','==',id).where('uid','==',user.uid).get().then(s=>{D.mine=s.empty?null:s.docs[0].data()}))}
+await Promise.all(jobs);
+if(D.mine&&D.mine.status==='approved'&&t.status!=='completed'){try{const r=await db.collection('tournaments').doc(id).collection('secret').doc('room').get();D.room=r.exists?r.data():null}catch(e){}}
+drawT()};
+function drawT(){const t=D.t,tabs=[['overview','Overview'],['rules','Rules'],['prize','Prize Pool'],['teams','Teams'],['schedule','Schedule'],['points','Points Table'],['results','Results']];
+app.innerHTML=`<a href="#/tournaments">← All tournaments</a><h1 style="margin-top:8px">${esc(t.title)}</h1><span class="badge ${esc(t.status)}">${esc(t.status)}</span><div class="tabs" style="margin-top:12px">${tabs.map(([k,n])=>`<button class="${D.tab===k?'on':''}" data-a="ttab" data-t="${k}">${n}</button>`).join('')}</div><div id="tpanel">${tpanel()}</div>`}
+function tpanel(){const t=D.t,k=D.tab,need='<div class="card muted">Login to view this section.</div>';
+if(k==='overview'){let h=`<div class="card"><div class="stats"><div class="stat"><b>${esc(t.game)}</b>Game</div><div class="stat"><b>${pz(t)}</b>Prize pool</div><div class="stat"><b>${entryTxt(t)}</b>Entry</div><div class="stat"><b>${t.filled||0}/${t.slots||0}</b>Slots</div></div><p>Mode: ${esc(t.mode||'-')} • Map: ${esc(t.map||'-')}</p><p>Starts: ${fmt(t.startTime)}</p></div>`;
+if(D.room)h+=`<div class="room"><b>Room credentials</b><br>Room ID: <b>${esc(D.room.roomId||'-')}</b><br>Password: <b>${esc(D.room.roomPass||'-')}</b></div>`;else if(D.mine&&D.mine.status==='approved'&&t.status!=='completed')h+='<div class="card muted">Room ID and password will appear here when the admin publishes them.</div>';
+h+=`<div class="card" id="regbox">${regBlock(t)}</div>`;return h}
+if(k==='rules')return `<div class="card" style="white-space:pre-wrap">${esc(t.rules||'Rules will be updated soon. Follow the general Rules & Fair Play page.')}</div>`;
+if(k==='prize')return `<div class="card"><h3>Total prize pool: ${pz(t)}</h3><p style="white-space:pre-wrap;margin-top:8px">${esc(t.prizeDetails||'Prize distribution will be announced.')}</p></div>`;
+if(!user)return need;
+if(k==='teams')return tbl(['#','Player','In-game name','Team'],D.regs.map((r,i)=>[i+1,esc(r.name),esc(r.ign),esc(r.teamName||'-')]));
+if(k==='schedule')return tbl(['Match','Time','Map','Status'],D.ms.map(m=>[esc(m.title),fmt(m.time),esc(m.map||'-'),`<span class="badge ${esc(m.status)}">${esc(m.status)}</span>`]));
+const done=D.regs.filter(r=>r.resultDone);
+if(k==='points')return tbl(['Rank','Player','Kills','Points'],[...done].sort((a,b)=>(a.rank||99)-(b.rank||99)).map(r=>[r.rank||'-',esc(r.name),r.kills||0,r.points||0]));
+if(k==='results')return tbl(['Rank','Player','Prize'],done.filter(r=>r.prize>0||r.rank<=3).sort((a,b)=>(a.rank||99)-(b.rank||99)).map(r=>[r.rank||'-',esc(r.name),(r.prize||0)+(r.type==='paid'?' Money':' Coins')]))}
+function regBlock(t){if(t.status==='completed')return '<p class="muted">This tournament is completed.</p>';if(!user)return '<a class="btn" href="#/login">Login to register</a>';if(D.mine)return `<p>Your registration: <span class="badge ${esc(D.mine.status)}">${esc(D.mine.status)}</span></p>${D.mine.status==='rejected'?`<p class="muted">Reason: ${esc(D.mine.reason||'Payment not verified')}</p>`:''}${D.mine.status==='pending'?'<p class="muted">Admin will verify your payment soon.</p>':''}`;if((t.filled||0)>=t.slots)return '<p class="muted">All slots are full.</p>';return '<button class="btn" data-a="showreg">Register for this tournament</button>'}
+ACT.ttab=d=>{D.tab=d.t;drawT()};
+ACT.showreg=async()=>{site._ok=0;await Promise.all([loadMe(),loadSite()]);const t=D.t,paid=ttype(t)==='paid',fee=paid?(Number(t.entryFee)||0):(Number(t.ngFee)||0),coin=paid?'NC':'NG',bal=paid?(me.wallet||0):(me.gold||0);
+if(paid&&!coins.ncEnabled){$('#regbox').innerHTML='<p class="muted">🔒 Paid tournaments are not active yet. They open after the required approvals.</p>';return}
+const low=fee>0&&bal<fee;const note=fee>0?`<div class="room" style="border-color:var(--neon);color:var(--text)">Entry: <b>${fee} ${CN[coin]}</b> • Your balance: <b>${bal} ${CN[coin]}</b>${low?`<br>Not enough ${CN[coin]}. <a href="#/wallet/${paid?'cash':'gold'}">${paid?'Open Money':'Earn Coins'}</a>`:''}</div>`:'<p class="muted">This tournament is free to join.</p>';
+$('#regbox').innerHTML=`<h3>Register</h3><form data-f="treg"><label>In-game name</label><input name="ign" required maxlength="30"><label>In-game UID</label><input name="gid" required maxlength="20" value="${esc(me.gameIds?(me.gameIds.ff||me.gameIds.bgmi||''):'')}"><label>Team name (optional)</label><input name="team" maxlength="30">${note}<button class="btn" type="submit" ${low?'disabled':''}>${fee>0?'Pay '+fee+' '+CN[coin]+' &amp; join':'Join now'}</button></form>`};
+H.treg=async f=>{const v=fd(f),t=D.t;busy(f,true);try{const ex=await db.collection('registrations').where('tid','==',t.id).where('uid','==',user.uid).get();if(!ex.empty)throw new Error('You are already registered');site._ok=0;await Promise.all([loadSite(),loadMe()]);const ft=(await db.collection('tournaments').doc(t.id).get()).data();if((ft.filled||0)>=ft.slots)throw new Error('Slots are full');if(ft.status==='completed')throw new Error('Tournament is completed');if(!ft.type)throw new Error('This tournament is not ready yet (admin must re-save it once).');const paid=ft.type==='paid';if(paid&&!coins.ncEnabled)throw new Error('Paid tournaments are not active yet');const fee=paid?(Number(ft.entryFee)||0):(Number(ft.ngFee)||0),coin=paid?'NC':'NG',fld=paid?'wallet':'gold',rid=t.id+'_'+user.uid;if(fee>0&&(me[fld]||0)<fee)throw new Error('Not enough '+CN[coin]+' balance');
+const b=db.batch();b.set(db.collection('registrations').doc(rid),{tid:t.id,tTitle:t.title,game:t.game,uid:user.uid,name:me.name,ign:v.ign.trim(),gid:v.gid.trim(),teamName:(v.team||'').trim(),teamId:me.teamId||'',amount:paid?fee:0,ngFee:paid?0:fee,payMethod:paid?'nc':(fee>0?'gold':'free'),type:ft.type,utr:'',status:'approved',approvedAt:Date.now(),createdAt:Date.now()});
+if(fee>0){const xid='entry_'+rid;b.set(db.collection('coinTx').doc(xid),{uid:user.uid,coin,type:'entry',amount:-fee,reason:'Entry - '+t.title,ref:t.id,by:'system',createdAt:FV.serverTimestamp()});b.update(db.collection('users').doc(user.uid),{[fld]:FV.increment(-fee),lastTx:xid})}
+b.update(db.collection('tournaments').doc(t.id),{filled:(ft.filled||0)+1});await b.commit();await loadMe();updateNav();toast(fee>0?'Joined. '+fee+' '+CN[coin]+' deducted.':'Joined successfully.');await R.tournament(t.id)}catch(e){toast(fe(e),1);busy(f,false)}};
+
+/* ---------- leaderboard ---------- */
+R.leaderboard=async(a='overall')=>{const tabs=[['overall','Overall Rankings'],['game','Game-wise'],['players','Player Rankings'],['teams','Team Rankings']];let h=`<h1>Leaderboard</h1><div class="tabs">${tabs.map(([k,l])=>`<a class="${a===k?'on':''}" href="#/leaderboard/${k}">${l}</a>`).join('')}</div>`;
+if(a==='teams'){const s=docs(await db.collection('teams').orderBy('points','desc').limit(50).get());h+=tbl(['#','Team','Members','Points'],s.map((x,i)=>[i+1,`<a href="#/team/${x.id}">${esc(x.name)}</a>`,(x.members||[]).length,x.points||0]))}
+else if(a==='game'){const G=await getGames();lbGame=lbGame||G[0].name;h+=`<select data-c="lbgame">${G.map(g=>`<option ${g.name===lbGame?'selected':''}>${esc(g.name)}</option>`).join('')}</select>`;if(!user)h+='<div class="card muted">Login to view game-wise rankings.</div>';else{const s=docs(await db.collection('registrations').where('game','==',lbGame).where('status','==','approved').get());const m={};s.filter(r=>r.resultDone).forEach(r=>{const x=m[r.uid]||(m[r.uid]={n:r.name,p:0,k:0,c:0});x.p+=r.points||0;x.k+=r.kills||0;x.c++});h+=tbl(['#','Player','Matches','Kills','Points'],Object.values(m).sort((a,b)=>b.p-a.p).slice(0,50).map((x,i)=>[i+1,esc(x.n),x.c,x.k,x.p]))}}
+else{let p=docs(await db.collection('players').orderBy('points','desc').limit(100).get());if(a==='players')p=p.sort((x,y)=>(y.wins||0)-(x.wins||0)||(y.points||0)-(x.points||0));h+=a==='players'?tbl(['#','Player','Wins','Matches','Points'],p.map((x,i)=>[i+1,esc(x.name),x.wins||0,x.matches||0,x.points||0])):tbl(['#','Player','Points','Wins'],p.map((x,i)=>[['🥇','🥈','🥉'][i]||i+1,esc(x.name)+' <span class="muted">@'+esc(x.username)+'</span>',x.points||0,x.wins||0]))}
+app.innerHTML=h};
+CH.lbgame=v=>{lbGame=v;route()};
+
+/* ---------- teams ---------- */
+R.teams=async(a='explore')=>{let h=`<h1>Teams</h1><div class="tabs">${[['explore','Explore Teams'],['my','My Team'],['create','Create Team']].map(([k,l])=>`<a class="${a===k?'on':''}" href="#/teams/${k}">${l}</a>`).join('')}</div>`;
+if(a==='explore'){const s=docs(await db.collection('teams').orderBy('points','desc').limit(60).get());h+=`<div class="grid">${s.map(t=>`<div class="card"><h3>${esc(t.name)} <span class="muted">[${esc(t.tag||'')}]</span></h3><p class="muted">${(t.members||[]).length} members • ${t.points||0} pts</p><a class="btn" href="#/team/${t.id}">Team profile</a></div>`).join('')||'<div class="card muted">No teams yet. Create the first one.</div>'}</div>`}
+else if(!user){app.innerHTML=h;return needLogin()}
+else if(a==='create'){h+=me.teamId?'<div class="card">You are already in a team. Leave it first from My Team.</div>':`<div class="card"><form data-f="mkteam"><label>Team name</label><input name="name" required maxlength="25"><label>Team tag (2-5 letters)</label><input name="tag" required minlength="2" maxlength="5"><button class="btn" type="submit">Create team</button></form></div>`}
+else{const inv=docs(await db.collection('invites').where('toUid','==',user.uid).get()).filter(i=>i.status==='pending');if(inv.length)h+=`<h2>Team invites</h2>`+inv.map(i=>`<div class="card"><b>${esc(i.teamName)}</b> invited you.<br><button class="btn" data-a="accinv" data-id="${i.id}">Accept</button><button class="btn ghost" data-a="decinv" data-id="${i.id}">Decline</button></div>`).join('');
+if(!me.teamId)h+='<div class="card muted">You are not in a team. Create one or accept an invite.</div>';else{const t=await db.collection('teams').doc(me.teamId).get();if(!t.exists)h+='<div class="card">Your team no longer exists.<br><button class="btn" data-a="clearteam">Clear</button></div>';else{const x=t.data(),cap=x.captain===user.uid;h+=teamCard(me.teamId,x)+(cap?`<div class="card"><h3>Invite players</h3><form data-f="invite"><label>Player username</label><input name="u" required placeholder="username"><button class="btn" type="submit">Send invite</button></form></div>`:'')+`<button class="btn red" data-a="leave">${cap?'Disband team':'Leave team'}</button>`}}}
+app.innerHTML=h};
+function teamCard(id,x){return `<div class="card"><h2 style="margin-top:0">${esc(x.name)} <span class="muted">[${esc(x.tag||'')}]</span></h2><p class="muted">Captain: ${esc(x.captainName||'-')} • ${x.points||0} points</p><h3>Members</h3><p>${(x.memberNames||[]).map(esc).join(', ')||'-'}</p></div>`}
+R.team=async id=>{const t=await db.collection('teams').doc(id).get();app.innerHTML=t.exists?`<a href="#/teams">← Teams</a>`+teamCard(id,t.data()):'<div class="card">Team not found.</div>'};
+H.mkteam=async f=>{const v=fd(f);busy(f,true);try{if(me.teamId)throw new Error('You are already in a team');const ref=db.collection('teams').doc(),b=db.batch();b.set(ref,{name:v.name.trim(),tag:v.tag.trim().toUpperCase(),captain:user.uid,captainName:me.name,members:[user.uid],memberNames:[me.name],points:0,createdAt:Date.now()});b.update(db.collection('users').doc(user.uid),{teamId:ref.id});b.update(db.collection('players').doc(user.uid),{teamId:ref.id});await b.commit();await loadMe();toast('Team created');go('#/teams/my')}catch(e){toast(fe(e),1);busy(f,false)}};
+H.invite=async f=>{const u=fd(f).u.trim().toLowerCase().replace('@','');busy(f,true);try{const p=await db.collection('players').where('username','==',u).limit(1).get();if(p.empty)throw new Error('No player with that username');const pl=p.docs[0],t=(await db.collection('teams').doc(me.teamId).get()).data();if(pl.id===user.uid)throw new Error('You are already in your team');if(pl.data().teamId)throw new Error('Player is already in a team');if((t.members||[]).length>=5)throw new Error('Team is full (max 5)');await db.collection('invites').doc(me.teamId+'_'+pl.id).set({teamId:me.teamId,teamName:t.name,toUid:pl.id,toName:pl.data().name,from:user.uid,status:'pending',createdAt:Date.now()});toast('Invite sent to @'+u);f.reset()}catch(e){toast(fe(e),1)}busy(f,false)};
+ACT.accinv=async d=>{try{if(me.teamId)throw new Error('Leave your current team first');const iv=await db.collection('invites').doc(d.id).get();const i=iv.data();const t=await db.collection('teams').doc(i.teamId).get();if(!t.exists)throw new Error('Team no longer exists');if((t.data().members||[]).length>=5)throw new Error('Team is full');const b=db.batch();b.update(t.ref,{members:FV.arrayUnion(user.uid),memberNames:FV.arrayUnion(me.name)});b.update(db.collection('users').doc(user.uid),{teamId:i.teamId});b.update(db.collection('players').doc(user.uid),{teamId:i.teamId});b.update(iv.ref,{status:'accepted'});await b.commit();await loadMe();toast('Joined team');route()}catch(e){toast(fe(e),1)}};
+ACT.decinv=async d=>{try{await db.collection('invites').doc(d.id).update({status:'declined'});route()}catch(e){toast(fe(e),1)}};
+ACT.clearteam=async()=>{try{const b=db.batch();b.update(db.collection('users').doc(user.uid),{teamId:''});b.update(db.collection('players').doc(user.uid),{teamId:''});await b.commit();await loadMe();route()}catch(e){toast(fe(e),1)}};
+ACT.leave=async()=>{try{const ref=db.collection('teams').doc(me.teamId),t=(await ref.get()).data(),cap=t.captain===user.uid;if(cap&&t.members.length>1)return toast('Captain can disband only when all other members have left',1);if(!confirm(cap?'Disband this team?':'Leave this team?'))return;const b=db.batch();if(cap)b.delete(ref);else b.update(ref,{members:FV.arrayRemove(user.uid),memberNames:FV.arrayRemove(me.name)});b.update(db.collection('users').doc(user.uid),{teamId:''});b.update(db.collection('players').doc(user.uid),{teamId:''});await b.commit();await loadMe();toast('Done');go('#/teams/explore')}catch(e){toast(fe(e),1)}};
+
+/* ---------- account ---------- */
+R.login=async()=>{if(user)return go('#/home');app.innerHTML=`<div class="brand"><div class="lg">NAYA <b>INDIA</b><br>ESPORTS</div><p class="muted">Login to enter the arena 🎮</p></div><div class="card" style="max-width:420px;margin:auto"><h1>Login</h1><form data-f="login"><label>Email</label><input name="email" type="email" required autocomplete="email"><label>Password</label><input name="password" type="password" required autocomplete="current-password"><button class="btn" type="submit">Login</button></form><p style="margin-top:10px"><a href="#" data-a="forgot">Forgot password?</a></p><p class="muted">New here? <a href="#/register">Create account</a></p></div>`};
+H.login=async f=>{const v=fd(f);busy(f,true);try{await auth.signInWithEmailAndPassword(v.email.trim(),v.password);toast('Welcome back');go(after||'#/home')}catch(e){toast(fe(e),1);busy(f,false)}};
+ACT.forgot=async()=>{const em=$('input[name=email]');if(!em||!em.value.trim())return toast('Enter your email first',1);try{await auth.sendPasswordResetEmail(em.value.trim());toast('Password reset email sent')}catch(e){toast(fe(e),1)}};
+R.register=async a=>{if(user)return go('#/home');app.innerHTML=`<div class="brand"><div class="lg">NAYA <b>INDIA</b><br>ESPORTS</div><p class="muted">Create your free account 🏆</p></div><div class="card" style="max-width:420px;margin:auto"><h1>Create account</h1><form data-f="register"><label>Full name</label><input name="name" required maxlength="40"><label>Username</label><input name="username" required minlength="3" maxlength="15" placeholder="letters, numbers, _"><label>Email</label><input name="email" type="email" required><label>Phone</label><input name="phone" type="tel" required pattern="[0-9]{10}" placeholder="10 digit number"><label>Password</label><input name="password" type="password" required minlength="6"><label>Confirm password</label><input name="password2" type="password" required minlength="6"><label>Referral code (optional, friend's username)</label><input name="ref" maxlength="15" value="${esc(a||'')}"><button class="btn" type="submit">Register</button></form><p class="muted" style="margin-top:10px">Already have an account? <a href="#/login">Login</a></p></div>`};
+H.register=async f=>{const v=fd(f),un=v.username.trim().toLowerCase(),ref=(v.ref||'').trim().toLowerCase().replace('@','');if(!/^[a-z0-9_]{3,15}$/.test(un))return toast('Username: 3-15 letters, numbers or _',1);if(v.password!==v.password2)return toast('Passwords do not match',1);busy(f,true);let c=null;try{c=await auth.createUserWithEmailAndPassword(v.email.trim(),v.password);const uid=c.user.uid,b=db.batch(),now=Date.now();const q=await db.collection('players').where('username','==',un).limit(1).get();if(!q.empty)throw new Error('Username already taken');let refUid='';if(ref){const r=await db.collection('players').where('username','==',ref).limit(1).get();if(r.empty)throw new Error('Referral code not found');refUid=r.docs[0].id}b.set(db.collection('users').doc(uid),{name:v.name.trim(),username:un,email:v.email.trim(),phone:v.phone.trim(),wallet:0,gold:0,role:'player',banned:false,teamId:'',gameIds:{},referredBy:refUid,createdAt:now});b.set(db.collection('players').doc(uid),{name:v.name.trim(),username:un,points:0,wins:0,matches:0,teamId:'',referredBy:refUid,createdAt:now});await b.commit();await loadMe();toast('Account created');go(after||'#/home')}catch(e){if(c&&c.user&&!me){try{await c.user.delete()}catch(x){}}toast(fe(e),1);busy(f,false)}};
+R.profile=async()=>{if(!user)return needLogin();await loadMe();if(!me)return;let tn='No team';if(me.teamId){try{const t=await db.collection('teams').doc(me.teamId).get();if(t.exists)tn=t.data().name}catch(e){}}
+app.innerHTML=`<div class="card" style="text-align:center"><div class="avatar">${esc((me.name||'?').charAt(0).toUpperCase())}</div><h2 style="margin:0">${esc(me.name)}</h2><p class="muted">@${esc(me.username)}<br>${esc(me.email)}</p><div class="stats"><div class="stat"><b>${stat.wins||0}</b>Wins</div><div class="stat"><b>${stat.matches||0}</b>Matches</div><div class="stat"><b style="font-size:15px">${new Date(me.createdAt||Date.now()).toLocaleDateString('en-IN',{day:'2-digit',month:'short',year:'numeric'})}</b>Joined</div></div><button class="btn red" data-a="logout" style="width:100%;padding:12px">Logout</button></div><div class="card"><h3>Personal details</h3><p class="muted">Phone: ${esc(me.phone)} • Team: ${esc(tn)} • Points: ${stat.points||0}</p></div><div class="card menu" style="padding:0"><a href="#/mytournaments">My Tournaments <span>›</span></a><a href="#/history">Match History <span>›</span></a><a href="#/notifications">Notifications <span>›</span></a><a href="#/teams/my">My Team <span>›</span></a><a href="#/settings">Settings <span>›</span></a><a href="#" data-a="install">Install App <span>›</span></a><a href="#/about">About Us <span>›</span></a><a href="#/contact">Contact Us <span>›</span></a><a href="#/faq">FAQ <span>›</span></a><a href="#/fairplay">Rules &amp; Fair Play <span>›</span></a></div>`};
+async function myRegs(){return docs(await db.collection('registrations').where('uid','==',user.uid).get()).sort((a,b)=>b.createdAt-a.createdAt)}
+R.mytournaments=async()=>{if(!user)return needLogin();const r=await myRegs();app.innerHTML=acct('mytournaments')+tbl(['Tournament','Game','Fee','Status'],r.map(x=>[`<a href="#/tournament/${x.tid}">${esc(x.tTitle)}</a>`,esc(x.game),(x.payMethod==='nc'?x.amount+' Money':x.payMethod==='gold'?x.ngFee+' Coins':x.amount>0?rs(x.amount):'Free'),`<span class="badge ${esc(x.status)}">${esc(x.status)}</span>`]))};
+R.history=async()=>{if(!user)return needLogin();const r=(await myRegs()).filter(x=>x.resultDone);app.innerHTML=acct('history')+tbl(['Tournament','Rank','Kills','Points','Prize'],r.map(x=>[`<a href="#/tournament/${x.tid}">${esc(x.tTitle)}</a>`,x.rank||'-',x.kills||0,x.points||0,(x.prize||0)+(x.type==='paid'?' Money':' Coins')]))};
+R.notifications=async()=>{if(!user)return needLogin();const [a,b]=await Promise.all([db.collection('notifications').where('uid','==',user.uid).limit(50).get(),db.collection('notifications').where('uid','==','all').limit(50).get()]);const n=[...docs(a),...docs(b)].sort((x,y)=>y.createdAt-x.createdAt);app.innerHTML=acct('notifications')+(n.map(x=>`<div class="card"><b>${esc(x.title)}</b><p>${esc(x.body)}</p><p class="muted">${fmt(x.createdAt)}</p></div>`).join('')||'<div class="card muted">No notifications yet.</div>')};
+R.settings=async()=>{if(!user)return needLogin();const g=me.gameIds||{};app.innerHTML=acct('settings')+`<div class="card"><form data-f="settings"><label>Full name</label><input name="name" required value="${esc(me.name)}" maxlength="40"><label>Phone</label><input name="phone" required pattern="[0-9]{10}" value="${esc(me.phone)}"><label>BGMI ID</label><input name="bgmi" value="${esc(g.bgmi||'')}"><label>Free Fire UID</label><input name="ff" value="${esc(g.ff||'')}"><label>Valorant ID</label><input name="valorant" value="${esc(g.valorant||'')}"><label>COD Mobile ID</label><input name="codm" value="${esc(g.codm||'')}"><button class="btn" type="submit">Save settings</button></form><button class="btn ghost" data-a="resetpw">Send password reset email</button><button class="btn red" data-a="logout">Logout</button></div>`};
+H.settings=async f=>{const v=fd(f);busy(f,true);try{const b=db.batch();b.update(db.collection('users').doc(user.uid),{name:v.name.trim(),phone:v.phone.trim(),gameIds:{bgmi:v.bgmi.trim(),ff:v.ff.trim(),valorant:v.valorant.trim(),codm:v.codm.trim()}});b.update(db.collection('players').doc(user.uid),{name:v.name.trim()});await b.commit();await loadMe();toast('Settings saved')}catch(e){toast(fe(e),1)}busy(f,false)};
+ACT.resetpw=async()=>{try{await auth.sendPasswordResetEmail(user.email);toast('Reset email sent to '+user.email)}catch(e){toast(fe(e),1)}};
+ACT.logout=async()=>{after='';await auth.signOut();toast('Logged out');history.replaceState(null,'','#/login');route()};
+
+/* ---------- wallet ---------- */
+async function claim(id,data,extra){await loadMe();const b=db.batch();b.set(db.collection('coinTx').doc(id),{uid:user.uid,coin:'NG',by:'system',ref:'',reason:'',createdAt:FV.serverTimestamp(),...data});b.update(db.collection('users').doc(user.uid),{gold:FV.increment(data.amount),lastTx:id,...(extra||{})});try{await b.commit()}catch(e){throw e.code==='permission-denied'?new Error('Not available: already claimed, limit reached, frozen or reward inactive'):e}await loadMe();updateNav()}
+ACT.daily=async()=>{try{site._ok=0;await loadSite();const day=utcDay(),amt=Number(coins.dailyLogin)||0;if(!(amt>0))throw new Error('Daily reward is not active');await loadMe();if(me.lastDaily===day)throw new Error('Already claimed today');await claim('login_'+user.uid+'_'+day,{type:'daily',amount:amt,reason:'Daily login reward'},{lastDaily:day});toast('+'+amt+' Coins added');route()}catch(e){toast(fe(e),1)}};
+ACT.refclaim=async d=>{try{site._ok=0;await loadSite();const amt=Number(coins.referralBonus)||0;if(!(amt>0))throw new Error('Referral reward is not active');await claim('ref_'+user.uid+'_'+d.id,{type:'referral',amount:amt,ref:d.id,reason:'Referral reward - '+d.n});toast('+'+amt+' Coins added');route()}catch(e){toast(fe(e),1)}};
+H.promo=async f=>{const code=fd(f).code.trim().toUpperCase().replace(/[^A-Z0-9]/g,'');busy(f,true);try{if(!code)throw new Error('Enter a promo code');const p=await db.collection('promos').doc(code).get();if(!p.exists||!p.data().active)throw new Error('Invalid or inactive promo code');const pd=p.data();if(pd.expiresAt&&pd.expiresAt<Date.now())throw new Error('Promo code expired');await claim('promo_'+code+'_'+user.uid,{type:'promo',amount:pd.amount,ref:code,reason:'Promo code '+code});toast('+'+pd.amount+' Coins added');route()}catch(e){toast(fe(e),1);busy(f,false)}};
+R.wallet=async a=>{if(!user)return needLogin();a=a==='cash'?'cash':'gold';site._ok=0;await Promise.all([loadMe(),loadSite()]);const nc=a==='cash',coin=nc?'NC':'NG';
+const tx=docs(await db.collection('coinTx').where('uid','==',user.uid).where('coin','==',coin).get()).map(x=>({...x,t:tms(x.createdAt)})).sort((x,y)=>y.t-x.t);
+const earn=tx.filter(x=>x.amount>0),spend=tx.filter(x=>x.amount<0),bal=nc?(me.wallet||0):(me.gold||0);
+const rows=l=>tbl(['Date &amp; time','Transaction ID','Type','Details','Coins'],l.map(x=>[fmt(x.t),'<span class="muted" style="word-break:break-all">'+esc(x.id)+'</span>',esc(x.type),esc(x.reason||'-'),(x.amount>0?'+':'')+x.amount]));
+let h=acct('wallet')+`<div class="tabs"><a class="${nc?'':'on'}" href="#/wallet/gold">🟡 Coin</a><a class="${nc?'on':''}" href="#/wallet/cash">🔵 Money</a></div><div class="card"><div class="stats"><div class="stat"><b>${bal}</b>${CN[coin]} balance</div><div class="stat"><b>${earn.reduce((s,x)=>s+x.amount,0)}</b>Total earned</div><div class="stat"><b>${-spend.reduce((s,x)=>s+x.amount,0)}</b>Total spent</div></div>`;
+if(!nc){h+=`<p class="muted">Coins are free. Use them only to join free tournaments. Coins have no cash value, cannot be withdrawn and cannot be transferred to other players.</p></div>`;
+h+=`<div class="card"><h3>Earn Coins</h3>`+(coins.dailyLogin>0?(me.lastDaily===utcDay()?'<p class="muted">🎁 Daily reward claimed today (resets at 5:30 AM IST).</p>':`<p>🎁 Daily login reward: <b>+${coins.dailyLogin} Coins</b></p><button class="btn" data-a="daily">Claim daily reward</button>`):'')+`<h3 style="margin-top:14px">Promo code</h3><form data-f="promo"><input name="code" placeholder="ENTER CODE" maxlength="20" style="text-transform:uppercase"><button class="btn" type="submit">Redeem</button></form><p class="muted">Participation bonus: +${coins.participationBonus||0} Coins for every tournament you play. Admin bonuses and event rewards are added automatically.</p></div>`;
+const refs=docs(await db.collection('players').where('referredBy','==',user.uid).get());
+h+=`<div class="card"><h3>Refer &amp; earn</h3><p class="muted">Share your link. You get <b>${coins.referralBonus||0} Coins</b> for each friend after they play their first tournament.</p><input readonly onclick="this.select()" value="${esc(location.origin+location.pathname+'#/register/'+me.username)}">${refs.length?tbl(['Friend','Matches','Reward'],refs.map(p=>{const done=tx.find(x=>x.id==='ref_'+user.uid+'_'+p.id);return [esc(p.name),p.matches||0,done?'Claimed ✓':((p.matches||0)>=1?`<button class="btn" data-a="refclaim" data-id="${p.id}" data-n="${esc(p.name)}">Claim</button>`:'<span class="muted">After first match</span>')]})):'<p class="muted">No referrals yet.</p>'}</div>`;
+const BON=['daily','referral','promo','participation','admin','bonus'];
+h+=`<h2>Bonus received</h2>`+rows(earn.filter(x=>BON.includes(x.type)))+`<h2>Earning history</h2>`+rows(earn)+`<h2>Spending history</h2>`+rows(spend)}
+else{if(!coins.ncEnabled){h+=`<p class="muted">🔒 Money is not active yet. It will open after the required approvals. Money cannot be exchanged with Coins and is not automatically withdrawable.</p></div>`}
+else{const dps=docs(await db.collection('deposits').where('uid','==',user.uid).get()).sort((x,y)=>y.createdAt-x.createdAt);h+=`<p class="muted">Money is used only for paid tournaments. It cannot be exchanged with Coins. 1 Money = ₹1.</p></div><div class="card"><h3>Add Money</h3><form data-f="deposit"><label>Amount (10 - 50,000 Money)</label><input name="amount" data-i="depamt" type="number" min="10" max="50000" required><div class="room" style="border-color:var(--neon);color:var(--text)">Pay to UPI: <b>${esc(site.upi||'UPI ID not set by admin')}</b><br><a class="btn ghost" id="deplink" style="display:none" href="#/wallet/cash">Pay with UPI app</a></div><label>UPI transaction / UTR ID (after payment)</label><input name="utr" required minlength="6" maxlength="30"><button class="btn" type="submit">Submit request</button></form><p class="muted">Money is added after the admin verifies your payment.</p></div><h2>Requests</h2>`+tbl(['Date','Amount','UTR','Status'],dps.map(x=>[fmt(x.createdAt),x.amount+' Money',esc(x.utr),`<span class="badge ${esc(x.status)}">${esc(x.status)}</span>`+(x.status==='rejected'&&x.reason?'<br><span class="muted">'+esc(x.reason)+'</span>':'')]))}
+h+=`<h2>Earning history</h2>`+rows(earn)+`<h2>Spending history</h2>`+rows(spend)}
+app.innerHTML=h};
+CH.depamt=v=>{const a=Number(v),l=$('#deplink');if(!l||!site.upi)return;if(a>=10){l.href='upi://pay?pa='+encodeURIComponent(site.upi)+'&pn='+encodeURIComponent(site.upiName||'NAYA INDIA ESPORTS')+'&am='+a+'&cu=INR&tn='+encodeURIComponent('Add Money');l.style.display='inline-block'}else l.style.display='none'};
+H.deposit=async f=>{const v=fd(f),amt=Number(v.amount);busy(f,true);try{if(!coins.ncEnabled)throw new Error('Money is not active');if(!(amt>=10&&amt<=50000))throw new Error('Amount must be between 10 and 50,000');const q=docs(await db.collection('deposits').where('uid','==',user.uid).get());if(q.filter(x=>x.status==='pending').length>=3)throw new Error('You already have 3 pending requests');await db.collection('deposits').add({uid:user.uid,name:me.name,amount:amt,utr:v.utr.trim(),status:'pending',createdAt:Date.now()});toast('Request submitted. Admin will verify.');route()}catch(e){toast(fe(e),1);busy(f,false)}};
+
+/* ---------- news ---------- */
+R.news=async(a='all')=>{const s=docs(await db.collection('news').orderBy('createdAt','desc').limit(50).get());const tabs=[['all','All'],['Gaming News','Gaming News'],['Esports Updates','Esports Updates'],['Announcements','Announcements'],['Blogs','Blogs']];const l=a==='all'?s:s.filter(n=>n.category===a);app.innerHTML=`<h1>News &amp; Updates</h1><div class="tabs">${tabs.map(([k,n])=>`<a class="${a===k?'on':''}" href="#/news/${encodeURIComponent(k)}">${n}</a>`).join('')}</div>${l.map(n=>`<div class="card"><span class="badge">${esc(n.category)}</span><h3 style="margin-top:6px">${esc(n.title)}</h3><p class="muted">${fmt(n.createdAt)}</p><p style="white-space:pre-wrap;margin-top:8px">${esc(n.body)}</p></div>`).join('')||'<div class="card muted">No posts yet.</div>'}`};
+
+/* ---------- static pages ---------- */
+const page=(t,h)=>async()=>{app.innerHTML=`<h1>${t}</h1><div class="card">${h}</div>`};
+R.about=page('About Us','<p>NAYA INDIA ESPORTS is a tournament platform for Indian mobile and PC gamers. We run fair, transparent custom-room tournaments with verified payments, live results and quick prize payouts.</p>');
+R.faq=page('FAQ','<details><summary>How do I join a tournament?</summary><p>Create an account, open a tournament, tap Register, pay the entry fee by UPI and submit the UTR ID.</p></details><details><summary>When do I get the room ID and password?</summary><p>After the admin approves your registration, credentials appear on the tournament page once published.</p></details><details><summary>How are prizes paid?</summary><p>Prizes are added to your wallet after results. Request a withdrawal to your UPI ID from the Wallet page.</p></details><details><summary>Why was my registration rejected?</summary><p>Usually because the UTR could not be verified. The reason is shown on the tournament page.</p></details>');
+R.privacy=page('Privacy Policy','<p>We store your name, email, phone and game IDs only to run tournaments and pay prizes. We never sell your data. Your email and phone are visible only to you and the admin team. Contact us to delete your account.</p>');
+R.terms=page('Terms &amp; Conditions','<p>You must provide correct details. Entry fees are non-refundable once a tournament starts. The admin decision on results is final. Accounts that break the rules can be banned and winnings withheld. You must be 18+ to withdraw real money.</p>');
+R.fairplay=page('Rules &amp; Fair Play','<ul style="padding-left:18px"><li>No hacks, cheats, emulators (where banned) or third-party tools.</li><li>No teaming with other squads or stream sniping.</li><li>Use only your registered in-game name and UID.</li><li>Be in the room before the start time. Late players are not re-added.</li><li>Cheaters are banned and prizes are cancelled.</li></ul>');
+R.contact=async()=>{await loadSite();app.innerHTML=`<h1>Contact Us</h1><div class="card">${site.email?`<p>Email: <a href="mailto:${esc(site.email)}">${esc(site.email)}</a></p>`:''}<form data-f="contact"><label>Name</label><input name="name" required value="${esc(me?me.name:'')}"><label>Email</label><input name="email" type="email" required value="${esc(user?user.email:'')}"><label>Message</label><textarea name="msg" rows="4" required maxlength="1000"></textarea><button class="btn" type="submit">Send message</button></form></div>`};
+H.contact=async f=>{const v=fd(f);busy(f,true);try{await db.collection('messages').add({name:v.name.trim(),email:v.email.trim(),msg:v.msg.trim(),uid:user?user.uid:'',createdAt:Date.now()});toast('Message sent');f.reset()}catch(e){toast(fe(e),1)}busy(f,false)};
+R.notfound=async()=>{app.innerHTML='<div class="card"><h2>Page not found</h2><a class="btn" href="#/home">Go home</a></div>'};
+
+/* ---------- app install (PWA) ---------- */
+let instHidden=false;
+function isApp(){return matchMedia('(display-mode: standalone)').matches||navigator.standalone===true}
+function showInst(){const b=$('#inst');if(b)b.style.display=(window.deferredPrompt&&!isApp()&&!instHidden)?'flex':'none'}
+async function doInstall(){const p=window.deferredPrompt;if(isApp())return toast('App is already installed');if(!p)return toast('Chrome menu (3 dots) > Install app / Add to Home screen',1);p.prompt();try{await p.userChoice}catch(e){}window.deferredPrompt=null;showInst()}
+ACT.install=doInstall;
+$('#instgo').onclick=doInstall;$('#instx').onclick=()=>{instHidden=true;showInst()};
+window.addEventListener('pwa-ready',showInst);
+if('serviceWorker' in navigator)navigator.serviceWorker.register('sw.js').catch(()=>{});
+</script>
+<script>
+(function(){
+var libs=['app','auth','firestore'];
+var bases=['https://www.gstatic.com/firebasejs/10.12.2/firebase-%-compat.js','https://cdnjs.cloudflare.com/ajax/libs/firebase/10.12.2/firebase-%-compat.min.js'];
+function load(u){return new Promise(function(ok,no){var s=document.createElement('script');s.src=u;s.onload=ok;s.onerror=no;document.head.appendChild(s)})}
+function tryBase(i){if(i>=bases.length)return Promise.reject(new Error('fail'));var c=Promise.resolve();libs.forEach(function(l){c=c.then(function(){return load(bases[i].replace('%',l))})});return c.catch(function(){return tryBase(i+1)})}
+tryBase(0).then(function(){if(!window.firebase)throw new Error('nofb');var s=document.createElement('script');s.textContent=document.getElementById('mainjs').textContent;document.body.appendChild(s)}).catch(function(){var d=document.createElement('div');d.style.cssText='margin:20px;padding:16px;border:1px solid #ff4d6d;border-radius:10px;background:#3a0f1a;color:#fff;font:15px sans-serif';d.innerHTML='<b>Firebase load nahi hua.</b><br>1) Internet check karo.<br>2) File ko Claude preview / in-app viewer me mat kholo. Chrome browser me hosted https link se kholo (Netlify / Firebase Hosting).<br>3) Ad-blocker ya VPN band karke dekho.';document.body.insertBefore(d,document.body.firstChild)});
+})();
+</script>
+</body>
+</html>
