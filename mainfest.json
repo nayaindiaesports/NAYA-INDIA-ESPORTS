@@ -1,48 +1,28 @@
 {
-  "name": "NAYA INDIA ESPORTS",
-  "short_name": "NAYA ESPORTS",
-  "description": "Play and win esports tournaments",
-  "start_url": "./",
-  "scope": "./",
+  "background_color": "#ffffff",
+  "dir": "ltr",
   "display": "standalone",
-  "orientation": "portrait",
-  "background_color": "#05070d",
+  "name": "NAYA INDIA ESPORTS",
+  "orientation": "any",
+  "scope": "/",
+  "short_name": "NAYA INDIA ESPORTS",
+  "start_url": "/",
   "theme_color": "#05070d",
   "icons": [
     {
-      "src": "icon-192.png",
-      "sizes": "192x192",
+      "src": "https://nayaindiaesports.github.io/NAYA-INDIA-ESPORTS/icon-192.png",
       "type": "image/png",
-      "purpose": "any"
-    },
-    {
-      "src": "icon-512.png",
-      "sizes": "512x512",
-      "type": "image/png",
-      "purpose": "any"
-    },
-    {
-      "src": "icon-512.png",
-      "sizes": "512x512",
-      "type": "image/png",
-      "purpose": "maskable"
+      "sizes": "2000x2000",
+      "isSquare": true,
+      "isPng": true,
+      "isWebp": false,
+      "isJpg": false,
+      "width": 2000,
+      "is512x512": false,
+      "is256x256": false,
+      "is192x192": false
     }
   ],
-  "id": "./",
-  "lang": "en-IN",
-  "categories": [
-    "games",
-    "sports",
-    "entertainment"
-  ],
-  "shortcuts": [
-    {
-      "name": "Tournaments",
-      "url": "./#/tournaments"
-    },
-    {
-      "name": "Wallet",
-      "url": "./#/wallet/gold"
-    }
-  ]
+  "id": "com.nayaindiaesports.app",
+  "description": "NAYA INDIA ESPORTS – Official Gaming App\n\nWelcome to NAYA INDIA ESPORTS, your ultimate destination for competitive mobile gaming and esports tournaments!\n\nJoin exciting tournaments, compete with talented players, showcase your gaming skills, and win exciting cash prizes.\n\nApp Features:\n\n- 🎮 BGMI &amp; Free Fire MAX Tournaments\n- 🏆 Live, Upcoming &amp; Completed Matches\n- 💰 Paid &amp; Free Entry Tournaments\n- 📝 Easy Online Player Registration\n- 🎯 Tournament Room ID &amp; Password\n- 📊 Live Leaderboards &amp; Rankings\n- 🥇 Match Results &amp; Prize Distribution\n- 👤 Player Profiles\n- 🔔 Important Tournament Updates\n\nPlay. Compete. Win. Repeat.\n\nJoin the NAYA INDIA ESPORTS community and take your gaming journey to the next level!\n\nNAYA INDIA ESPORTS – India's Gaming Community."
 }
