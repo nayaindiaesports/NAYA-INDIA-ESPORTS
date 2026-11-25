@@ -27,5 +27,22 @@
       "type": "image/png",
       "purpose": "maskable"
     }
+  ],
+  "id": "./",
+  "lang": "en-IN",
+  "categories": [
+    "games",
+    "sports",
+    "entertainment"
+  ],
+  "shortcuts": [
+    {
+      "name": "Tournaments",
+      "url": "./#/tournaments"
+    },
+    {
+      "name": "Wallet",
+      "url": "./#/wallet/gold"
+    }
   ]
 }
